@@ -32,8 +32,13 @@ var fightOrSkip = function(){
             return true;
         }
     }
-    return false;
-}
+    if (promptFight === "fight") {
+        return false;
+    }
+
+    window.alert("You need to provide a valid answer! Please try again.");
+    return fightOrSkip();
+};
 
 // fight function (now with parameter for enemy's name)
 var fight = function(enemy) {
@@ -156,7 +161,7 @@ var endGame = function() {
     }
 
     // if player has more money than the high score, player has new high score!
-    if (playerInfo.Info.money > highScore) {
+    if (playerInfo.money > highScore) {
         localStorage.setItem("highscore", playerInfo.money);
         localStorage.setItem("name", playerInfo.name);
 
@@ -208,10 +213,10 @@ var shop = function() {
 //fucntion to set name
 var getPlayerName = function() {
     var name = "";
+    while (name === "" || name === null) {
+        name = prompt("What is your robot's name?");
+    }
 
-while (name === "" || name === null) {
-    name = prompt("What is your robot's name?");
-}
     console.log("Your robot's name is " + name);
     return name;
 };
@@ -219,7 +224,6 @@ while (name === "" || name === null) {
 /* GAME INFORMATION / VARIABLES */
 var playerInfo = {
     name: getPlayerName(),
-    name: window.prompt("What is your robot's name?"),
     health: 100,
     attack: 10,
     money: 10,
