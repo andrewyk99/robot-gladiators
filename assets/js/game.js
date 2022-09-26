@@ -101,7 +101,7 @@ var fight = function(enemy) {
     }
 };
 
-// fucntion to start a new game
+// function to start a new game
 var startGame = function() {
     // reset player stats
     playerInfo.reset();
